@@ -1,12 +1,11 @@
-Vuelo
-======
-###### Booom's time tracking tool
+# Vuelo
+### *Time flies, we capture it*
 
 ## Preface
 
 ### Summary
 
-Internal and external web application for tracking time, sharing estimations and maybe more.
+Internal and external web application for planning resources, tracking time, sharing estimations and maybe more.
 
 ### Motivation & Goals
 
@@ -33,50 +32,85 @@ Internal and external web application for tracking time, sharing estimations and
 Vuelo is spanish for _I fly_, _flight_ <br>
 Time flies, we better keep track of it!
 
-## Data Structure
+## App Structure - MVP
 
-### Team member
+### Admin - Projects
 
-- Connected with Google, get name, email, picture (maybe phone number)
-- Position (eg. sales, operations, developer, designer etc.)
-- Seniority
-- Default hourly fee
-- Manage holidays
+*Create and manage projects*
 
-### Client
+Create a project, assign people to it. A project can have phases, that determines invoice periods for a project.
 
-- Name
-- Contact people
+### Admin - Users
 
-### Project
+*Invite and remove people*
 
-- Name
-- Client
-- Estimation
-- Is active
-- Team members
-  - Hourly fee
-  - Capacity per week
-  - Schedule (if different than project start / end)
-- Schedule
-  - Start date
-  - End date (optional)
-  - Phases❓
+Invite people by email to use the app.
+Set user role (Admin, Business, Product, Client, Freelancer etc.)
 
-### Estimation
+User roles can be used for access levels, but also default views, extended data. For example a product team member can have a default hourly fee.
 
-## Web app structure
+### Admin - Resource allocator
 
-### For clients
+*Who, when, what?*
 
-Contact people receive invitation via email.
+Add people to projects in a calendar, set allocation percent / hours per week / total hours.
 
-Anyone with the link can view
-eg. [vuelo.booom.studio/12345abcde]()
+See summary of planned / tracked hours. Sum amount of hourly fee * tracked hours.
 
-_or_
+Track holidays.
 
-Contact people have access to the client's projects.
-eg. Log in with the invited email address
+### Tracker - Calendar
 
-If a client has only one project, open that automatically. If more, that show a list of projects.
+*See your ongoing / assigned projects for a month*
+
+Filtered calendar view for projects that you are on. Useful for planning, summary.
+
+### Tracker - Week
+
+*See your ongoing / assigned projects for a week*
+
+Very simple view for day-to-day time tracking.
+
+### Project - Timesheet
+
+*How is my project going?*
+
+Check planned vs. tracked hours.
+
+## App Structure - Post MVP
+
+### Calendar
+
+- Drag & Drop
+- Touch interactions
+- All the filters!
+
+### Admin - Estimation
+
+*Create and share an estimation*
+
+Based on our current Google Spreadsheet estimation.
+
+### Admin - Clients
+
+- Multiple projects per client
+- Set contact person
+
+### Admin - Projects
+
+- Issue invoices
+- Set maximum budget
+- Set maximum hours
+- Alert if a limit is exhausted
+
+### Admin - Resource stats
+
+- Utilization / person
+- Monthly summary
+- Planned vs. real hours, utilization hours, sold hours, avg price / person
+
+### Integration ideas
+
+- Jira
+- Slack
+- Toggl
