@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
+import TestComponent from '@Components/Test';
+
 class App extends Component {
   render() {
-    return <h1>Hello Vuelo!</h1>;
+    return <TestComponent name="Vuelo" />;
   }
 }
 
