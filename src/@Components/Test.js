@@ -1,5 +1,29 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-export default ({ name }) => (
-  <h1>Hello {name}</h1>
-);
+function Test({ data: { allUsers, refetch } }) {
+  return (
+    <div>
+      <button onClick={() => refetch()}>
+        Refresh
+      </button>
+      <ul>
+        {allUsers && allUsers.map(user => (
+          <li key={user.id}>
+            {user.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default graphql(gql`
+{ 
+  allUsers {
+    id
+    name
+  }
+}
+`)(Test);
