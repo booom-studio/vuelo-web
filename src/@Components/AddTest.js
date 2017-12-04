@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 
 class AddTest extends React.Component {
   static propTypes = {
-    mutate: PropTypes.string
+    mutate: PropTypes.func
   };
 
   state = {
