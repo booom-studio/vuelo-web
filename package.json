@@ -11,6 +11,7 @@
     "react": "^16.2.0",
     "react-apollo": "2.0.1",
     "react-dom": "^16.2.0",
+    "react-google-login": "^3.0.2",
     "react-scripts": "1.0.17"
   },
   "scripts": {
@@ -19,7 +20,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "linter": "eslint .",
-    "prettier": "prettier --write ./src/**.js"
+    "prettier": "prettier --write './src{/**,}/*.js'"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
