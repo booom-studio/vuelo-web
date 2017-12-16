@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import 'typeface-roboto';
+
 import Login from '@Containers/Login';
+import Navigation from '@Containers/Navigation';
+
+import Loading from '@Components/Loading';
+
+import './style.css';
 
 class App extends Component {
   static propTypes = {
@@ -32,17 +39,16 @@ class App extends Component {
   }
 
   render() {
-    const { initialized, signedIn, signOut, user } = this.props;
+    const { initialized, signedIn, user } = this.props;
 
     if (!initialized) {
-      return <h1>Loading...</h1>;
+      return <Loading />;
     }
 
     if (signedIn && user) {
       return (
         <div>
-          <button onClick={signOut}>Sign out</button>
-          <img src={user.picture} alt="wow" />
+          <Navigation />
         </div>
       );
     }
