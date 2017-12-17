@@ -19,21 +19,18 @@ const styles = theme => ({
   },
   toolbar: {
     justifyContent: 'space-between'
+  },
+  avatar: {
+    cursor: 'pointer'
   }
 });
 
 class Navigation extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
     signedIn: PropTypes.bool.isRequired,
-    signOut: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    user: {
-      name: 'Gipsz Jakab'
-    }
+    signOut: PropTypes.func.isRequired,
+    user: PropTypes.object
   };
 
   state = {
@@ -49,49 +46,55 @@ class Navigation extends Component {
   };
 
   render() {
-    const { classes, user, signOut } = this.props;
+    const { classes, user, signOut, signedIn } = this.props;
     const { anchorElement } = this.state;
 
     return (
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography type="title" color="inherit">
-            Hello {user.name}
+            Vuelo
           </Typography>
-          <Avatar
-            alt="Adelle Charles"
-            src={user.picture}
-            className={classes.avatar}
-            onClick={this.toggleContext}
-            ref={node => {
-              this.avatar = node;
-            }}
-          />
-          <Popover
-            id="menu-appbar"
-            anchorEl={anchorElement}
-            open={!!anchorElement}
-            onRequestClose={this.handleRequestClose}
-            getContentAnchorEl={null}
-            transformOrigin={{
-              vertical: -10
-            }}
-            anchorOrigin={{
-              horizontal: 'left',
-              vertical: 'bottom'
-            }}
-          >
-            <MenuList role="menu">
-              <MenuItem onClick={signOut}>
-                Sign out
-                <Icon className={classes.icon}>exit_to_app</Icon>
-              </MenuItem>
-              <MenuItem onClick={this.handleRequestClose}>
-                Settings
-                <Icon className={classes.icon}>settings</Icon>
-              </MenuItem>
-            </MenuList>
-          </Popover>
+          {signedIn && (
+            <React.Fragment>
+              <Avatar
+                alt="Adelle Charles"
+                src={user.picture}
+                className={classes.avatar}
+                onClick={this.toggleContext}
+              />
+              <Popover
+                id="menu-appbar"
+                anchorEl={anchorElement}
+                open={!!anchorElement}
+                onRequestClose={this.handleRequestClose}
+                getContentAnchorEl={null}
+                transformOrigin={{
+                  vertical: -10
+                }}
+                anchorOrigin={{
+                  horizontal: 'left',
+                  vertical: 'bottom'
+                }}
+              >
+                <MenuList role="menu">
+                  <MenuItem
+                    onClick={() => {
+                      this.handleRequestClose();
+                      signOut();
+                    }}
+                  >
+                    Sign out
+                    <Icon className={classes.icon}>exit_to_app</Icon>
+                  </MenuItem>
+                  <MenuItem onClick={this.handleRequestClose}>
+                    Settings
+                    <Icon className={classes.icon}>settings</Icon>
+                  </MenuItem>
+                </MenuList>
+              </Popover>
+            </React.Fragment>
+          )}
         </Toolbar>
       </AppBar>
     );

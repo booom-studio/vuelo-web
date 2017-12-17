@@ -4,7 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { signIn, signOut } from 'dux/actions';
-import Login from './Login';
+import SignIn from './SignIn';
 
 const signInGoogle = graphql(
   gql`
@@ -42,4 +42,4 @@ const mapDispatchToProps = {
 export default compose(
   signInGoogle,
   connect(mapStateToProps, mapDispatchToProps)
-)(Login);
+)(SignIn);

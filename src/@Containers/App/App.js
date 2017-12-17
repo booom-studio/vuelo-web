@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import 'typeface-roboto';
-
-import Login from '@Containers/Login';
+import SignIn from '@Containers/SignIn';
 import Navigation from '@Containers/Navigation';
 
 import Loading from '@Components/Loading';
 
-import './style.css';
+import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+import Themed from './Themed';
+
+const styles = () => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    background: `url(${require('./doodles.png')})`
+  }
+});
 
 class App extends Component {
   static propTypes = {
+    classes: PropTypes.object.isRequired,
     signedIn: PropTypes.bool.isRequired,
     initialized: PropTypes.bool.isRequired,
     initialize: PropTypes.func.isRequired,
@@ -38,7 +48,7 @@ class App extends Component {
     initialize();
   }
 
-  render() {
+  getContent = () => {
     const { initialized, signedIn, user } = this.props;
 
     if (!initialized) {
@@ -47,14 +57,27 @@ class App extends Component {
 
     if (signedIn && user) {
       return (
-        <div>
-          <Navigation />
-        </div>
+        <React.Fragment>
+          <Typography type="headline">Hello {user.name}</Typography>
+        </React.Fragment>
       );
     }
 
-    return <Login />;
+    return <SignIn />;
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Themed>
+        <div className={classes.container}>
+          <Navigation />
+          {this.getContent()}
+        </div>
+      </Themed>
+    );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
