@@ -8,8 +8,8 @@ import SignIn from './SignIn';
 
 const signInGoogle = graphql(
   gql`
-    mutation($token: String!) {
-      signInGoogle(token: $token) {
+    mutation($email: String!, $password: String!) {
+      signIn(email: $email, password: $password) {
         token
         user {
           id
@@ -22,9 +22,9 @@ const signInGoogle = graphql(
   `,
   {
     props: ({ mutate }) => ({
-      signInGoogle: token =>
-        mutate({ variables: { token } }).then(
-          ({ data: { signInGoogle } }) => signInGoogle
+      signInSimple: ({ email, password }) =>
+        mutate({ variables: { email, password } }).then(
+          ({ data: { signIn } }) => signIn
         )
     })
   }

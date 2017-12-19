@@ -10,9 +10,9 @@ import Avatar from 'material-ui/Avatar';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import Popover from 'material-ui/Popover/Popover';
 
-const styles = theme => ({
+const styles = ({ palette, spacing }) => ({
   icon: {
-    marginLeft: theme.spacing.unit
+    marginLeft: spacing.unit
   },
   appBar: {
     width: '100%'
@@ -21,7 +21,8 @@ const styles = theme => ({
     justifyContent: 'space-between'
   },
   avatar: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    border: `1px solid ${palette.grey.A200}`
   }
 });
 
@@ -58,11 +59,13 @@ class Navigation extends Component {
           {signedIn && (
             <React.Fragment>
               <Avatar
-                alt="Adelle Charles"
+                alt={user.name}
                 src={user.picture}
                 className={classes.avatar}
                 onClick={this.toggleContext}
-              />
+              >
+                {!user.picture && <Icon>person</Icon>}
+              </Avatar>
               <Popover
                 id="menu-appbar"
                 anchorEl={anchorElement}

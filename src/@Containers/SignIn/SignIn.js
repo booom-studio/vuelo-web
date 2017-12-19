@@ -53,7 +53,7 @@ const styles = ({ palette, spacing }) => {
 class SignIn extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    signInGoogle: PropTypes.func.isRequired,
+    signInSimple: PropTypes.func.isRequired,
     signIn: PropTypes.func.isRequired,
     signOut: PropTypes.func.isRequired
   };
@@ -67,6 +67,16 @@ class SignIn extends Component {
     this.setState({ [field]: value });
   };
 
+  send = async evt => {
+    const { signIn, signInSimple } = this.props;
+    const { email, password } = this.state;
+
+    evt.preventDefault();
+    const { user, token } = await signInSimple({ email, password });
+
+    await signIn({ user, token });
+  };
+
   render() {
     const { classes } = this.props;
     const { email, password } = this.state;
@@ -78,7 +88,7 @@ class SignIn extends Component {
             Sign in
           </Typography>
           <CardContent className={classes.cardContent}>
-            <form action="">
+            <form action="" onSubmit={this.send}>
               <TextField
                 id="email"
                 type="email"
@@ -99,7 +109,13 @@ class SignIn extends Component {
                 margin="dense"
                 fullWidth
               />
-              <Button className={classes.button} raised color="primary">
+              <Button
+                className={classes.button}
+                disabled={!email || !password}
+                raised
+                color="primary"
+                type="submit"
+              >
                 Sign in with Email
               </Button>
               <Typography type="caption">
