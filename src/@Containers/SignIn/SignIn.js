@@ -54,8 +54,11 @@ class SignIn extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     signInSimple: PropTypes.func.isRequired,
+    signedIn: PropTypes.bool.isRequired,
     signIn: PropTypes.func.isRequired,
-    signOut: PropTypes.func.isRequired
+    signOut: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired
   };
 
   state = {
@@ -63,18 +66,28 @@ class SignIn extends Component {
     password: ''
   };
 
+  componentWillReceiveProps(nextProps) {
+    const { history, signedIn } = nextProps;
+
+    if (signedIn) {
+      history.push('/');
+    }
+  }
+
   handleChange = field => ({ target: { value } }) => {
     this.setState({ [field]: value });
   };
 
   send = async evt => {
-    const { signIn, signInSimple } = this.props;
+    const { signIn, signInSimple, history, location } = this.props;
     const { email, password } = this.state;
 
     evt.preventDefault();
     const { user, token } = await signInSimple({ email, password });
 
     await signIn({ user, token });
+
+    history.push(location.state.from.pathname);
   };
 
   render() {

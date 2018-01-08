@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SignIn from '@Containers/SignIn';
-import Navigation from '@Containers/Navigation';
+// import SignIn from '@Containers/SignIn';
+import Routes from '@Containers/Routes';
+import TopBar from '@Containers/TopBar';
 
 import Loading from '@Components/Loading';
 
 import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
 import Themed from './Themed';
 
 const styles = () => ({
@@ -49,21 +49,13 @@ class App extends Component {
   }
 
   getContent = () => {
-    const { initialized, signedIn, user } = this.props;
+    const { initialized } = this.props;
 
     if (!initialized) {
       return <Loading />;
     }
 
-    if (signedIn && user) {
-      return (
-        <React.Fragment>
-          <Typography type="headline">Hello {user.name}</Typography>
-        </React.Fragment>
-      );
-    }
-
-    return <SignIn />;
+    return <Routes />;
   };
 
   render() {
@@ -72,7 +64,7 @@ class App extends Component {
     return (
       <Themed>
         <div className={classes.container}>
-          <Navigation />
+          <TopBar />
           {this.getContent()}
         </div>
       </Themed>

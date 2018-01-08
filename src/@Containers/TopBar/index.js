@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { signOut } from 'dux/actions';
 
-import Navigation from './Navigation';
+import TopBar from './TopBar';
 
 const mapStateToProps = ({ user, signedIn }) => ({
   user,
@@ -13,4 +13,4 @@ const mapDispatchToProps = {
   signOut
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

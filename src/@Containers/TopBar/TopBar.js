@@ -26,7 +26,7 @@ const styles = ({ palette, spacing }) => ({
   }
 });
 
-class Navigation extends Component {
+class TopBar extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     signedIn: PropTypes.bool.isRequired,
@@ -104,4 +104,4 @@ class Navigation extends Component {
   }
 }
 
-export default withStyles(styles)(Navigation);
+export default withStyles(styles)(TopBar);
