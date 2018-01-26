@@ -4,18 +4,41 @@ import PropTypes from 'prop-types';
 // import SignIn from '@Containers/SignIn';
 import Routes from '@Containers/Routes';
 import TopBar from '@Containers/TopBar';
+import Drawer from '@Containers/Drawer';
 
 import Loading from '@Components/Loading';
 
 import { withStyles } from 'material-ui/styles';
 import Themed from './Themed';
 
-const styles = () => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
+const styles = ({ breakpoints, palette }) => ({
+  root: {
+    width: '100%',
     height: '100vh',
-    background: `url(${require('./doodles.png')})`
+    zIndex: 1,
+    overflow: 'hidden'
+  },
+  appFrame: {
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%'
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    flexGrow: 1,
+    backgroundColor: palette.background.default,
+    padding: 24,
+    height: 'calc(100% - 56px)',
+    marginTop: 56,
+    background: `url(${require('./doodles.png')}) right`,
+    [breakpoints.up('sm')]: {
+      height: 'calc(100% - 64px)',
+      marginTop: 64
+    }
   }
 });
 
@@ -63,12 +86,25 @@ class App extends Component {
 
     return (
       <Themed>
-        <div className={classes.container}>
-          <TopBar />
-          {this.getContent()}
+        <div className={classes.root}>
+          <div className={classes.appFrame}>
+            <TopBar />
+            <Drawer />
+            <main className={classes.content}>{this.getContent()}</main>
+          </div>
         </div>
       </Themed>
     );
+
+    // return (
+    //   <Themed>
+    //     <div className={classes.container}>
+    //       <TopBar />
+    //       <Drawer />
+    //       {this.getContent()}
+    //     </div>
+    //   </Themed>
+    // );
   }
 }
 

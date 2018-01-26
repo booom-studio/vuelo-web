@@ -9,7 +9,9 @@ import './style.css';
 const theme = createMuiTheme({
   palette: {
     primary: amber
-  }
+  },
+  zIndex: { drawer: 2 },
+  drawerWidth: 240
 });
 
 const Themed = ({ children }) => (

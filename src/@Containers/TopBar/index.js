@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 
-import { signOut } from 'dux/actions';
+import { signOut, openDrawer, closeDrawer } from 'dux/actions';
 
 import TopBar from './TopBar';
 
-const mapStateToProps = ({ user, signedIn }) => ({
+const mapStateToProps = ({ user, signedIn, drawerOpen }) => ({
   user,
-  signedIn
+  signedIn,
+  drawerOpen
 });
 
 const mapDispatchToProps = {
-  signOut
+  signOut,
+  openDrawer,
+  closeDrawer
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

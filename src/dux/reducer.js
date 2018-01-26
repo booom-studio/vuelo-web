@@ -1,10 +1,17 @@
-import { SIGN_IN, SIGN_OUT, INITIALIZE } from 'dux/actions';
+import {
+  SIGN_IN,
+  SIGN_OUT,
+  INITIALIZE,
+  OPEN_DRAWER,
+  CLOSE_DRAWER
+} from 'dux/actions';
 
 const initialState = {
   initialized: false,
   signedIn: false,
   user: null,
-  token: null
+  token: null,
+  drawerOpen: false // TODO from localstorage
 };
 
 export default (state = initialState, action) => {
@@ -29,6 +36,16 @@ export default (state = initialState, action) => {
         user: null,
         token: null
       });
+    case OPEN_DRAWER:
+      return {
+        ...state,
+        drawerOpen: true
+      };
+    case CLOSE_DRAWER:
+      return {
+        ...state,
+        drawerOpen: false
+      };
     default:
       return state;
   }
