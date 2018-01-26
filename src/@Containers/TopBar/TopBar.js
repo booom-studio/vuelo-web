@@ -42,7 +42,10 @@ const styles = ({ palette, spacing, transitions, zIndex, drawerWidth }) => ({
   },
   toolbar: {},
   toolbarContent: {
-    justifyContent: 'space-between'
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1
   },
   avatar: {
     cursor: 'pointer',
@@ -90,7 +93,7 @@ class TopBar extends Component {
         color="default"
         className={cx(classes.appBar, drawerOpen && classes.appBarShift)}
       >
-        <Toolbar className={classes.toolbar} disableGutters={!drawerOpen}>
+        <Toolbar className={classes.toolbar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
