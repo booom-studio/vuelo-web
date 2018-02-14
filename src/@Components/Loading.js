@@ -16,7 +16,7 @@ const styles = theme => ({
 
 const Loading = ({ classes }) => (
   <div className={classes.container}>
-    <CircularProgress size={100} color="accent" thickness={1} />
+    <CircularProgress size={100} color="primary" thickness={1} />
   </div>
 );
 
