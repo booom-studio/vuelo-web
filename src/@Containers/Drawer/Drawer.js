@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import cx from 'classnames';
 
@@ -53,16 +54,7 @@ class MiniDrawer extends Component {
     closeDrawer: PropTypes.func.isRequired
   };
 
-  // handleDrawerOpen = () => {
-  //   this.setState({ open: true });
-  // };
-
-  // handleDrawerClose = () => {
-  //   this.setState({ open: false });
-  // };
-
   render() {
-    // const { open } = this.state;
     const { open, classes = {}, closeDrawer } = this.props;
 
     return (
@@ -81,13 +73,13 @@ class MiniDrawer extends Component {
           </div>
           <Divider />
           <List className={classes.list}>
-            <ListItem button>
+            <ListItem button component={Link} to="/calendar">
               <ListItemIcon>
                 <Icon>perm_contact_calendar</Icon>
               </ListItemIcon>
               <ListItemText primary="Calendar" />
             </ListItem>
-            <ListItem button>
+            <ListItem to="/projects" component={Link} button>
               <ListItemIcon>
                 <Icon>stars</Icon>
               </ListItemIcon>

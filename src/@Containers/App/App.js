@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 // import SignIn from '@Containers/SignIn';
 import Routes from '@Containers/Routes';
 import TopBar from '@Containers/TopBar';
@@ -26,9 +28,10 @@ const styles = ({ breakpoints, palette }) => ({
   },
   content: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     width: '100%',
+    overflowY: 'scroll',
     flexGrow: 1,
     backgroundColor: palette.background.default,
     padding: 24,
@@ -85,15 +88,17 @@ class App extends Component {
     const { classes } = this.props;
 
     return (
-      <Themed>
-        <div className={classes.root}>
-          <div className={classes.appFrame}>
-            <TopBar />
-            <Drawer />
-            <main className={classes.content}>{this.getContent()}</main>
+      <Router>
+        <Themed>
+          <div className={classes.root}>
+            <div className={classes.appFrame}>
+              <TopBar />
+              <Drawer />
+              <main className={classes.content}>{this.getContent()}</main>
+            </div>
           </div>
-        </div>
-      </Themed>
+        </Themed>
+      </Router>
     );
 
     // return (

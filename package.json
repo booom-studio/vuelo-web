@@ -10,7 +10,7 @@
     "classnames": "^2.2.5",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
-    "material-ui": "^1.0.0-beta.23",
+    "material-ui": "^1.0.0-beta.30",
     "react": "^16.2.0",
     "react-apollo": "2.0.1",
     "react-dom": "^16.2.0",
