@@ -12,7 +12,7 @@ const theme = createMuiTheme({
     primary: amber
   },
   zIndex: { drawer: 2 },
-  drawerWidth: 240
+  drawerWidth: 200
 });
 
 const Themed = ({ children }) => (

@@ -13,7 +13,7 @@ import Loading from '@Components/Loading';
 import { withStyles } from 'material-ui/styles';
 import Themed from './Themed';
 
-const styles = ({ breakpoints, palette }) => ({
+const styles = ({ breakpoints }) => ({
   root: {
     width: '100%',
     height: '100vh',
@@ -33,15 +33,11 @@ const styles = ({ breakpoints, palette }) => ({
     width: '100%',
     overflowY: 'scroll',
     flexGrow: 1,
-    backgroundColor: palette.background.default,
-    padding: 24,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
-    background: `url(${require('./doodles.png')}) right`,
-    [breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64
-    }
+    height: '100%'
+    // [breakpoints.up('sm')]: {
+    //   height: 'calc(100% - 64px)',
+    //   marginTop: 64
+    // }
   }
 });
 
@@ -92,7 +88,6 @@ class App extends Component {
         <Themed>
           <div className={classes.root}>
             <div className={classes.appFrame}>
-              <TopBar />
               <Drawer />
               <main className={classes.content}>{this.getContent()}</main>
             </div>

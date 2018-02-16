@@ -37,7 +37,7 @@ const styles = ({ mixins, transitions, zIndex, drawerWidth }) => ({
     })
   },
   drawerPaperClose: {
-    width: 60,
+    width: 50,
     overflowX: 'hidden',
     transition: transitions.create('width', {
       easing: transitions.easing.sharp,
@@ -55,7 +55,7 @@ class MiniDrawer extends Component {
   };
 
   render() {
-    const { open, classes = {}, closeDrawer } = this.props;
+    const { open, classes = {}, openDrawer, closeDrawer } = this.props;
 
     return (
       <Drawer
@@ -66,11 +66,6 @@ class MiniDrawer extends Component {
         }}
       >
         <div className={classes.drawerInner}>
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={closeDrawer}>
-              <Icon>chevron_left</Icon>
-            </IconButton>
-          </div>
           <Divider />
           <List className={classes.list}>
             <ListItem button component={Link} to="/calendar">
@@ -89,6 +84,9 @@ class MiniDrawer extends Component {
           <Divider />
           <List className={classes.list} />
         </div>
+        <IconButton onClick={open ? closeDrawer : openDrawer}>
+          {open ? 'chevron_left' : 'chevron_right'}
+        </IconButton>
       </Drawer>
     );
   }

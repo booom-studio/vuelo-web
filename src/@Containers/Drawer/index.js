@@ -8,6 +8,9 @@ const mapStateToProps = ({ drawerOpen }) => ({
   open: drawerOpen
 });
 
-const mapDispatchToProps = { closeDrawer };
+const mapDispatchToProps = {
+  openDrawer,
+  closeDrawer
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Drawer);
