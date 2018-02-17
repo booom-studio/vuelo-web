@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
 import Divider from 'material-ui/Divider';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import ProjectTitle from '@Components/ProjectTitle';
 
 const styles = ({ mixins, transitions, zIndex, drawerWidth }) => ({
   drawerInner: {
@@ -37,12 +38,15 @@ const styles = ({ mixins, transitions, zIndex, drawerWidth }) => ({
     })
   },
   drawerPaperClose: {
-    width: 50,
-    overflowX: 'hidden',
+    width: 36,
+    overflowY: 'visible',
     transition: transitions.create('width', {
       easing: transitions.easing.sharp,
       duration: transitions.duration.leavingScreen
     })
+  },
+  button: {
+    width: 36
   }
 });
 
@@ -51,12 +55,15 @@ class MiniDrawer extends Component {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
     open: PropTypes.bool.isRequired,
-    closeDrawer: PropTypes.func.isRequired
+    openDrawer: PropTypes.func.isRequired,
+    closeDrawer: PropTypes.func.isRequired,
   };
-
+  componentDidMount() {
+    //this.projects = this.props.getProjects();
+  }
   render() {
-    const { open, classes = {}, openDrawer, closeDrawer } = this.props;
-
+    const { open, classes = {}, openDrawer, closeDrawer, data: {allProjects: projects = []} } = this.props;
+    console.log(projects);
     return (
       <Drawer
         type="permanent"
@@ -64,27 +71,15 @@ class MiniDrawer extends Component {
         classes={{
           paper: cx(classes.drawerPaper, { [classes.drawerPaperClose]: !open })
         }}
-      >
-        <div className={classes.drawerInner}>
-          <Divider />
-          <List className={classes.list}>
-            <ListItem button component={Link} to="/calendar">
-              <ListItemIcon>
-                <Icon>perm_contact_calendar</Icon>
-              </ListItemIcon>
-              <ListItemText primary="Calendar" />
-            </ListItem>
-            <ListItem to="/projects" component={Link} button>
-              <ListItemIcon>
-                <Icon>stars</Icon>
-              </ListItemIcon>
-              <ListItemText primary="Projects" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List className={classes.list} />
-        </div>
-        <IconButton onClick={open ? closeDrawer : openDrawer}>
+      > 
+        <IconButton className={classes.button}> add </IconButton>
+          {projects.map(project => (
+            <ProjectTitle key={project.id} drawerOpen={open} {...project} />
+          ))}
+        <IconButton
+          className={classes.button}
+          onClick={open ? closeDrawer : openDrawer}
+        >
           {open ? 'chevron_left' : 'chevron_right'}
         </IconButton>
       </Drawer>
