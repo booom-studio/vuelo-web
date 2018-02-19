@@ -5,20 +5,23 @@ import SignIn from 'react-google-login';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-const styles = ({ palette, spacing, shadows }) => ({
+import icon from './google-32.png';
+
+const styles = ({ palette, spacing }) => ({
   button: {
-    padding: 0,
-    width: '100%',
-    background: '#d14836',
-    boxShadow: shadows[1],
-    color: palette.common.darkWhite,
-    '&:hover': {
-      background: '#a63526'
-    }
+    padding: spacing.unit,
+    color: palette.common.black,
+    boxShadow: 'none',
+    border: '1px solid black'
+  },
+  icon: {
+    width: 12,
+    height: 12,
+    objectFit: 'contain'
   },
   innerButton: {
-    padding: spacing.unit,
-    flex: 1
+    flex: 1,
+    paddingRight: spacing.unit / 2
   }
 });
 
@@ -46,15 +49,17 @@ class GoogleSignIn extends Component {
     const { clientId, classes } = this.props;
 
     return (
-      <Button raised className={classes.button}>
+      <Button className={classes.button}>
         <SignIn
           tag="div"
           className={classes.innerButton}
           clientId={clientId}
           onSuccess={this.success}
           onFailure={this.failure}
-          buttonText="Sign In with Google"
+          buttonText="Sign In"
+          // autoLoad
         />
+        <img src={icon} className={classes.icon} alt="Google" />
       </Button>
     );
   }

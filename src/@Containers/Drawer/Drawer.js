@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import cx from 'classnames';
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
-import Divider from 'material-ui/Divider';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+// import Icon from 'material-ui/Icon';
+// import Divider from 'material-ui/Divider';
+// import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import ProjectTitle from '@Components/ProjectTitle';
 
 const styles = ({ mixins, transitions, zIndex, drawerWidth }) => ({
@@ -56,14 +56,20 @@ class MiniDrawer extends Component {
     theme: PropTypes.object.isRequired,
     open: PropTypes.bool.isRequired,
     openDrawer: PropTypes.func.isRequired,
-    closeDrawer: PropTypes.func.isRequired,
+    closeDrawer: PropTypes.func.isRequired
   };
   componentDidMount() {
     //this.projects = this.props.getProjects();
   }
   render() {
-    const { open, classes = {}, openDrawer, closeDrawer, data: {allProjects: projects = []} } = this.props;
-    console.log(projects);
+    const {
+      open,
+      classes = {},
+      openDrawer,
+      closeDrawer,
+      data: { allProjects: projects = [] }
+    } = this.props;
+    // console.log(projects);
     return (
       <Drawer
         type="permanent"
@@ -71,11 +77,11 @@ class MiniDrawer extends Component {
         classes={{
           paper: cx(classes.drawerPaper, { [classes.drawerPaperClose]: !open })
         }}
-      > 
+      >
         <IconButton className={classes.button}> add </IconButton>
-          {projects.map(project => (
-            <ProjectTitle key={project.id} drawerOpen={open} {...project} />
-          ))}
+        {projects.map(project => (
+          <ProjectTitle key={project.id} drawerOpen={open} {...project} />
+        ))}
         <IconButton
           className={classes.button}
           onClick={open ? closeDrawer : openDrawer}

@@ -3,41 +3,22 @@ import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// import SignIn from '@Containers/SignIn';
 import Routes from '@Containers/Routes';
-import TopBar from '@Containers/TopBar';
 import Drawer from '@Containers/Drawer';
 
 import Loading from '@Components/Loading';
 
 import { withStyles } from 'material-ui/styles';
-import Themed from './Themed';
+import Theme from '@Components/Theme';
 
-const styles = ({ breakpoints }) => ({
+const styles = ({ palette }) => ({
   root: {
-    width: '100%',
     height: '100vh',
-    zIndex: 1,
-    overflow: 'hidden'
-  },
-  appFrame: {
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-    height: '100%'
+    display: 'flex'
   },
   content: {
     display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    width: '100%',
-    overflowY: 'scroll',
-    flexGrow: 1,
-    height: '100%'
-    // [breakpoints.up('sm')]: {
-    //   height: 'calc(100% - 64px)',
-    //   marginTop: 64
-    // }
+    flexGrow: 1
   }
 });
 
@@ -85,26 +66,14 @@ class App extends Component {
 
     return (
       <Router>
-        <Themed>
+        <Theme>
           <div className={classes.root}>
-            <div className={classes.appFrame}>
-              <Drawer />
-              <main className={classes.content}>{this.getContent()}</main>
-            </div>
+            <Drawer />
+            <main className={classes.content}>{this.getContent()}</main>
           </div>
-        </Themed>
+        </Theme>
       </Router>
     );
-
-    // return (
-    //   <Themed>
-    //     <div className={classes.container}>
-    //       <TopBar />
-    //       <Drawer />
-    //       {this.getContent()}
-    //     </div>
-    //   </Themed>
-    // );
   }
 }
 
