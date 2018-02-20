@@ -4,12 +4,13 @@ import SignIn from 'react-google-login';
 
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 
 import icon from './google-32.png';
 
 const styles = ({ palette, spacing }) => ({
   button: {
-    padding: spacing.unit,
+    padding: 0,
     color: palette.common.black,
     boxShadow: 'none',
     border: '1px solid black'
@@ -20,8 +21,11 @@ const styles = ({ palette, spacing }) => ({
     objectFit: 'contain'
   },
   innerButton: {
+    display: 'flex',
     flex: 1,
-    paddingRight: spacing.unit / 2
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: spacing.unit
   }
 });
 
@@ -56,10 +60,12 @@ class GoogleSignIn extends Component {
           clientId={clientId}
           onSuccess={this.success}
           onFailure={this.failure}
-          buttonText="Sign In"
-          // autoLoad
-        />
-        <img src={icon} className={classes.icon} alt="Google" />
+        >
+          <Typography color="inherit" variant="button">
+            Sign In
+          </Typography>
+          <img src={icon} className={classes.icon} alt="Google" />
+        </SignIn>
       </Button>
     );
   }

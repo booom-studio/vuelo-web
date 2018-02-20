@@ -11,7 +11,7 @@ import Loading from '@Components/Loading';
 import { withStyles } from 'material-ui/styles';
 import Theme from '@Components/Theme';
 
-const styles = ({ palette }) => ({
+const styles = () => ({
   root: {
     height: '100vh',
     display: 'flex'
@@ -62,13 +62,13 @@ class App extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, signedIn } = this.props;
 
     return (
       <Router>
         <Theme>
           <div className={classes.root}>
-            <Drawer />
+            {signedIn && <Drawer />}
             <main className={classes.content}>{this.getContent()}</main>
           </div>
         </Theme>

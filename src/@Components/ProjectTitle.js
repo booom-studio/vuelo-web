@@ -1,48 +1,85 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 import Icon from 'material-ui/Icon';
 
-const styles = theme => ({
+import cx from 'classnames';
+
+const styles = ({ transitions, palette, drawer }) => ({
+  outerContainer: {
+    position: 'relative',
+    height: drawer.width
+  },
   container: {
-    height: 36,
-    width: 200,
-    transform: 'translateX(-164px)',
-    transition: 'transform 0.3s ease',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 10,
+    height: drawer.width,
+    width: drawer.fullWidth,
+    left: drawer.width - drawer.fullWidth,
+    cursor: 'pointer',
+    transition: transitions.create('left', {
+      easing: transitions.easing.sharp,
+      duration: transitions.duration.shortest
+    }),
     '&:hover': {
-      transform: 'translateX(0)'
+      left: 0,
+
+      '& $title': {
+        opacity: 1
+      },
+      '& $icon': {
+        opacity: 0.25
+      }
     }
   },
   open: {
-    transform: 'translateX(0)'
+    left: 0,
+    '& $title': {
+      opacity: 1
+    },
+    '& $icon': {
+      opacity: 0
+    }
   },
   title: {
-    display: 'inline-block',
-    width: 160,
-    fontFamily: 'Lato',
     fontSize: 12,
     letterSpacing: 0.3,
-    textAlign: 'left',
-    color: '#000000',
-    padding: '10px 0 11px 10px',
-    '&:hover': {}
+    color: palette.common.black
   },
-  icon: {
-    float: 'right'
-  }
+  fadeIn: {
+    opacity: 0,
+    transition: transitions.create('opacity', {
+      easing: transitions.easing.sharp,
+      duration: transitions.duration.shortest,
+      delay: transitions.duration.shortest
+    })
+  },
+  icon: {}
 });
 
-const ProjectTitle = ({ classes, ...props }) => (
-  <div
-    className={
-      props.drawerOpen
-        ? `${classes.container} ${classes.open}`
-        : classes.container
-    }
-    style={{ backgroundColor: props.color }}
-  >
-    <p className={classes.title}>{props.title}</p>
-    {/* TODO: <Icon className={classes.icon}>arrow_forward</Icon> */}
+const ProjectTitle = ({ classes, title, color, open }) => (
+  <div className={classes.outerContainer}>
+    <div
+      className={cx(classes.container, { [classes.open]: open })}
+      style={{ backgroundColor: color }}
+    >
+      <Typography variant="body1" className={cx(classes.fadeIn, classes.title)}>
+        {title}
+      </Typography>
+      <Icon className={cx(classes.fadeIn, classes.icon)}>arrow_forward</Icon>
+    </div>
   </div>
 );
+
+ProjectTitle.propTypes = {
+  classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired
+};
 
 export default withStyles(styles)(ProjectTitle);

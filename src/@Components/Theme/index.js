@@ -11,13 +11,23 @@ import * as muiColors from 'material-ui/colors';
 
 const colors = pickBy(mapValues(muiColors, 'A100'));
 
+const unit = 8;
+
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     projectColors: colors
   },
-  zIndex: { drawer: 2 },
-  drawerWidth: 200
+  spacing: {
+    unit
+  },
+  typography: {
+    fontFamily: ['"Lato"', 'sans-serif']
+  },
+  drawer: {
+    fullWidth: unit * 25,
+    width: unit * 4.5
+  }
 });
 
 const Theme = ({ children }) => (

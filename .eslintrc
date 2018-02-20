@@ -19,6 +19,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-console": "off",
-    "no-case-declarations": "off"
+    "no-case-declarations": "off",
+    "react/display-name": "off"
   }
 }
