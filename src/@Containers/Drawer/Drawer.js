@@ -15,6 +15,7 @@ export default class Drawer extends Component {
     loading: PropTypes.bool.isRequired,
     projects: PropTypes.array,
     createProject: PropTypes.func.isRequired,
+    selectProject: PropTypes.func.isRequired,
     refetchProjects: PropTypes.func.isRequired
   };
 
@@ -37,6 +38,12 @@ export default class Drawer extends Component {
     await refetchProjects();
   };
 
+  selectProject = id => {
+    const { selectProject } = this.props;
+
+    selectProject(id);
+  };
+
   render() {
     const { classes, open, projects, loading } = this.props;
 
@@ -44,6 +51,7 @@ export default class Drawer extends Component {
       <View
         classes={classes}
         projects={loading ? [] : projects}
+        onProjectClick={this.selectProject}
         onCreateProjectClick={this.createProject}
         onDrawerToggleClick={this.toggleDrawer}
         open={open}

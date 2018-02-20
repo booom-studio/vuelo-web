@@ -2,27 +2,10 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { openDrawer, closeDrawer } from 'dux/actions';
+import { openDrawer, closeDrawer, selectProject } from '@dux/actions';
+import { projects } from '@dux/queries';
 
 import Drawer from './withStyles';
-
-const ALL_PROJECTS_QUERY = gql`
-  {
-    allProjects {
-      id
-      title
-      color
-    }
-  }
-`;
-
-const allProjects = graphql(ALL_PROJECTS_QUERY, {
-  props: ({ data: { allProjects: projects = [], loading, refetch } }) => ({
-    projects,
-    refetchProjects: refetch,
-    loading
-  })
-});
 
 const createProject = graphql(
   gql`
@@ -49,11 +32,12 @@ const mapStateToProps = ({ drawerOpen }) => ({
 
 const mapDispatchToProps = {
   openDrawer,
-  closeDrawer
+  closeDrawer,
+  selectProject
 };
 
 export default compose(
-  allProjects,
+  projects,
   createProject,
   connect(mapStateToProps, mapDispatchToProps)
 )(Drawer);

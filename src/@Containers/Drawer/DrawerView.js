@@ -14,7 +14,8 @@ const DrawerView = ({
   open,
   projects,
   onDrawerToggleClick,
-  onCreateProjectClick
+  onCreateProjectClick,
+  onProjectClick
 }) => (
   <Drawer
     variant="permanent"
@@ -27,8 +28,14 @@ const DrawerView = ({
       <IconButton className={classes.button} onClick={onCreateProjectClick}>
         <Icon>add</Icon>
       </IconButton>
-      {projects.map(project => (
-        <ProjectTitle key={project.id} open={open} {...project} />
+      {projects.map(({ id, title, color }) => (
+        <ProjectTitle
+          key={id}
+          open={open}
+          onClick={() => onProjectClick(id)}
+          title={title}
+          color={color}
+        />
       ))}
     </div>
     <IconButton
@@ -44,8 +51,9 @@ DrawerView.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
   projects: PropTypes.array.isRequired,
-  onDrawerToggleClick: PropTypes.func.isRequired,
-  onCreateProjectClick: PropTypes.func.isRequired
+  onDrawerToggleClick: PropTypes.func,
+  onCreateProjectClick: PropTypes.func,
+  onProjectClick: PropTypes.func
 };
 
 export default DrawerView;

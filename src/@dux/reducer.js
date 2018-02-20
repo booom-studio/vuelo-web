@@ -3,15 +3,17 @@ import {
   SIGN_OUT,
   INITIALIZE,
   OPEN_DRAWER,
-  CLOSE_DRAWER
-} from 'dux/actions';
+  CLOSE_DRAWER,
+  SELECT_PROJECT
+} from '@dux/actions';
 
 const initialState = {
   initialized: false,
   signedIn: false,
   user: null,
   token: null,
-  drawerOpen: false // TODO from localstorage
+  drawerOpen: false, // TODO from localstorage
+  selectedProjectId: null
 };
 
 export default (state = initialState, action) => {
@@ -45,6 +47,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         drawerOpen: false
+      };
+    case SELECT_PROJECT:
+      return {
+        ...state,
+        selectedProjectId: action.projectId
       };
     default:
       return state;

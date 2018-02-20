@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { initialize, signIn, signOut } from 'dux/actions';
+import { initialize, signIn, signOut } from '@dux/actions';
 import App from './App';
 
 const refreshToken = graphql(

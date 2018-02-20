@@ -61,11 +61,12 @@ const styles = ({ transitions, palette, drawer }) => ({
   icon: {}
 });
 
-const ProjectTitle = ({ classes, title, color, open }) => (
+const ProjectTitle = ({ classes, title, color, open, onClick }) => (
   <div className={classes.outerContainer}>
     <div
       className={cx(classes.container, { [classes.open]: open })}
       style={{ backgroundColor: color }}
+      onClick={onClick}
     >
       <Typography variant="body1" className={cx(classes.fadeIn, classes.title)}>
         {title}
@@ -79,7 +80,8 @@ ProjectTitle.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
+  onClick: PropTypes.func
 };
 
 export default withStyles(styles)(ProjectTitle);

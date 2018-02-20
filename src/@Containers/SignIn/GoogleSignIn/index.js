@@ -3,7 +3,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import config from '@config';
 
-import { signIn, signOut } from 'dux/actions';
+import { signIn, signOut } from '@dux/actions';
 import GoogleSignIn from './GoogleSignIn';
 
 const { clientId } = config.google;
