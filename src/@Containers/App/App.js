@@ -5,11 +5,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Routes from '@Containers/Routes';
 import Drawer from '@Containers/Drawer';
+import Theme from '@Containers/Theme';
 
 import Loading from '@Components/Loading';
 
 import { withStyles } from 'material-ui/styles';
-import Theme from '@Components/Theme';
 
 const styles = () => ({
   root: {
