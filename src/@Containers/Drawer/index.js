@@ -1,30 +1,10 @@
 import { connect } from 'react-redux';
-import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
+import { compose } from 'react-apollo';
 
 import { openDrawer, closeDrawer, selectProject } from '@dux/actions';
-import { projects } from '@dux/queries';
+import { projects, createProject, colors } from '@dux/queries';
 
-import Drawer from './withStyles';
-
-const createProject = graphql(
-  gql`
-    mutation($title: String!, $color: String) {
-      createProject(title: $title, color: $color) {
-        title
-        color
-      }
-    }
-  `,
-  {
-    props: ({ mutate }) => ({
-      createProject: (title, color) =>
-        mutate({
-          variables: { title, color }
-        })
-    })
-  }
-);
+import Drawer from './Drawer';
 
 const mapStateToProps = ({ drawerOpen }) => ({
   open: drawerOpen
@@ -39,5 +19,6 @@ const mapDispatchToProps = {
 export default compose(
   projects,
   createProject,
+  colors,
   connect(mapStateToProps, mapDispatchToProps)
 )(Drawer);

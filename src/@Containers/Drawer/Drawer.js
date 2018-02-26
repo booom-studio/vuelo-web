@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import sample from 'lodash.sample';
+import mapValues from 'lodash.mapvalues';
 
-import View from './DrawerView';
+import View from './withStyles';
 
 export default class Drawer extends Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
     open: PropTypes.bool.isRequired,
     openDrawer: PropTypes.func.isRequired,
     closeDrawer: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     projects: PropTypes.array,
+    colors: PropTypes.object,
     createProject: PropTypes.func.isRequired,
     selectProject: PropTypes.func.isRequired,
     refetchProjects: PropTypes.func.isRequired
@@ -30,12 +29,11 @@ export default class Drawer extends Component {
   };
 
   createProject = async () => {
-    const { createProject, refetchProjects, theme: { palette } } = this.props;
+    const { createProject, refetchProjects, selectProject } = this.props;
 
-    const color = sample(palette.projectColors);
-
-    await createProject('New project', color);
+    const { id } = await createProject({ title: 'New project' });
     await refetchProjects();
+    selectProject(id, true);
   };
 
   selectProject = id => {
@@ -45,12 +43,14 @@ export default class Drawer extends Component {
   };
 
   render() {
-    const { classes, open, projects, loading } = this.props;
+    const { open, projects, loading, colors } = this.props;
+
+    const lightColors = mapValues(colors, 'light');
 
     return (
       <View
-        classes={classes}
         projects={loading ? [] : projects}
+        colors={lightColors}
         onProjectClick={this.selectProject}
         onCreateProjectClick={this.createProject}
         onDrawerToggleClick={this.toggleDrawer}

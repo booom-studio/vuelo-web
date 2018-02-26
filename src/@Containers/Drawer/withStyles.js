@@ -1,6 +1,6 @@
 import { withStyles } from 'material-ui/styles';
 
-import Drawer from './Drawer';
+import Drawer from './DrawerView';
 
 const styles = ({ palette, transitions, drawer }) => ({
   drawer: {
@@ -26,4 +26,4 @@ const styles = ({ palette, transitions, drawer }) => ({
   }
 });
 
-export default withStyles(styles, { withTheme: true })(Drawer);
+export default withStyles(styles)(Drawer);

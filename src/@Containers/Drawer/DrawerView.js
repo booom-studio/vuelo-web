@@ -13,6 +13,7 @@ const DrawerView = ({
   classes,
   open,
   projects,
+  colors,
   onDrawerToggleClick,
   onCreateProjectClick,
   onProjectClick
@@ -34,7 +35,7 @@ const DrawerView = ({
           open={open}
           onClick={() => onProjectClick(id)}
           title={title}
-          color={color}
+          color={colors[color]}
         />
       ))}
     </div>
@@ -51,6 +52,7 @@ DrawerView.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
   projects: PropTypes.array.isRequired,
+  colors: PropTypes.object.isRequired,
   onDrawerToggleClick: PropTypes.func,
   onCreateProjectClick: PropTypes.func,
   onProjectClick: PropTypes.func
