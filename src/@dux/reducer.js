@@ -12,7 +12,7 @@ const initialState = {
   signedIn: false,
   user: null,
   token: null,
-  drawerOpen: false, // TODO from localstorage
+  isDrawerOpen: false, // TODO from localstorage
   selectedProjectId: null,
   isProjectNew: false
 };
@@ -42,12 +42,12 @@ export default (state = initialState, action) => {
     case OPEN_DRAWER:
       return {
         ...state,
-        drawerOpen: true
+        isDrawerOpen: true
       };
     case CLOSE_DRAWER:
       return {
         ...state,
-        drawerOpen: false
+        isDrawerOpen: false
       };
     case SELECT_PROJECT:
       return {

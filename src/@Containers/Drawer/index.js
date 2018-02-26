@@ -6,8 +6,8 @@ import { projects, createProject, colors } from '@dux/queries';
 
 import Drawer from './Drawer';
 
-const mapStateToProps = ({ drawerOpen }) => ({
-  open: drawerOpen
+const mapStateToProps = ({ isDrawerOpen }) => ({
+  open: isDrawerOpen
 });
 
 const mapDispatchToProps = {

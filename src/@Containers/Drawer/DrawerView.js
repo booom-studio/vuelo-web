@@ -9,6 +9,8 @@ import Icon from 'material-ui/Icon';
 
 import ProjectTitle from '@Components/ProjectTitle';
 
+import Settings from '@Containers/Settings';
+
 const DrawerView = ({
   classes,
   open,
@@ -39,12 +41,15 @@ const DrawerView = ({
         />
       ))}
     </div>
-    <IconButton
-      className={cx(classes.button, classes.toggleDrawer)}
-      onClick={onDrawerToggleClick}
-    >
-      <Icon>{open ? 'chevron_left' : 'chevron_right'}</Icon>
-    </IconButton>
+    <div>
+      <Settings />
+      <IconButton
+        className={cx(classes.button, classes.toggleDrawer)}
+        onClick={onDrawerToggleClick}
+      >
+        <Icon>{open ? 'chevron_left' : 'chevron_right'}</Icon>
+      </IconButton>
+    </div>
   </Drawer>
 );
 
