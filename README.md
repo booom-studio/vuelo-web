@@ -46,8 +46,8 @@ it!
 `npm start`
 
 **Note:**\
-The backend enpoint currently depends on `NODE_ENV`, but CRA si weird and doesn't
-pass it locally.\
+The backend enpoint currently depends on `NODE_ENV`, but `react-scripts` is weird
+and doesn't pass it locally to Webpack.\
 Run the backend locally, or change the enpoint URL in the code.
 
 ### Deploy
