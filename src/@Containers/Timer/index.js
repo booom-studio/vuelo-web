@@ -1,23 +1,32 @@
 import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
 
-// import { openDrawer, closeDrawer, selectProject } from '@dux/actions';
-import { projects } from '@dux/queries';
+import {
+  projects,
+  updateProject,
+  toggleProject,
+  currentTimeEntry,
+  colors
+} from '@dux/queries';
 
 import Timer from './Timer';
 
-const mapStateToProps = ({ selectedProjectId }) => ({
-  selectedProjectId
+const mapStateToProps = (
+  { selectedProjectId, isProjectNew },
+  { projects }
+) => ({
+  selectedProjectId,
+  isProjectNew,
+  project: selectedProjectId
+    ? projects.find(({ id }) => id === selectedProjectId)
+    : projects[0]
 });
-
-// const mapDispatchToProps = {
-//   openDrawer,
-//   closeDrawer,
-//   selectProject
-// };
 
 export default compose(
   projects,
-  // createProject,
+  updateProject,
+  toggleProject,
+  currentTimeEntry,
+  colors,
   connect(mapStateToProps, null)
 )(Timer);

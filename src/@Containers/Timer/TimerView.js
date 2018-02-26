@@ -5,23 +5,41 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
 
-const TimerView = ({ classes, color, title, time }) => (
+const TimerView = ({
+  classes,
+  color,
+  title,
+  time,
+  isRunning,
+  onProjectTitleChange,
+  onProjectTitleSubmit,
+  onToggleClick,
+  inputRef
+}) => (
   <div
     className={classes.container}
     style={{
-      background: `radial-gradient(rgba(255,255, 255, 0.5), transparent) ${
+      background: `radial-gradient(closest-side, rgba(255,255, 255, 0.5), transparent) ${
         color
       }`
     }}
   >
-    <Typography color="inherit" className={classes.title}>
-      {title}
-    </Typography>
+    <form className={classes.titleContainer} onSubmit={onProjectTitleSubmit}>
+      <input
+        color="inherit"
+        className={classes.title}
+        onChange={({ target: { value } }) => onProjectTitleChange(value)}
+        value={title}
+        ref={inputRef}
+      />
+    </form>
     <Typography color="inherit" className={classes.time}>
       {time}
     </Typography>
-    <IconButton>
-      <Icon className={classes.button}>play_circle_filled</Icon>
+    <IconButton onClick={onToggleClick}>
+      <Icon className={classes.button}>
+        {isRunning ? 'pause_circle_filled' : 'play_circle_filled'}
+      </Icon>
     </IconButton>
   </div>
 );
@@ -31,7 +49,11 @@ TimerView.propTypes = {
   color: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
-  onProjectTitleChange: PropTypes.func
+  isRunning: PropTypes.bool,
+  onProjectTitleChange: PropTypes.func,
+  onProjectTitleSubmit: PropTypes.func,
+  onToggleClick: PropTypes.func,
+  inputRef: PropTypes.func
 };
 
 export default TimerView;
