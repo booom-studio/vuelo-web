@@ -13,7 +13,8 @@ const initialState = {
   user: null,
   token: null,
   drawerOpen: false, // TODO from localstorage
-  selectedProjectId: null
+  selectedProjectId: null,
+  isProjectNew: false
 };
 
 export default (state = initialState, action) => {
@@ -51,7 +52,8 @@ export default (state = initialState, action) => {
     case SELECT_PROJECT:
       return {
         ...state,
-        selectedProjectId: action.projectId
+        selectedProjectId: action.projectId,
+        isProjectNew: !!action.isNew
       };
     default:
       return state;

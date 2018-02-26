@@ -22,7 +22,8 @@ export const initialize = simpleAction(INITIALIZE);
 export const openDrawer = simpleAction(OPEN_DRAWER);
 export const closeDrawer = simpleAction(CLOSE_DRAWER);
 
-export const selectProject = projectId => ({
+export const selectProject = (projectId, isNew) => ({
   type: SELECT_PROJECT,
-  projectId
+  projectId,
+  isNew
 });
