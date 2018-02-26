@@ -133,8 +133,9 @@ export const colors = graphql(
     }
   `,
   {
-    props: ({ data: { colors } }) => ({
-      colors: colors && JSON.parse(colors)
+    props: ({ data: { colors, loading } }) => ({
+      colors: colors && JSON.parse(colors),
+      loadingColors: loading
     })
   }
 );
