@@ -39,7 +39,7 @@ it!
 
 ### Install
 
-`npm i` or `yarn`
+`npm i`
 
 ### Run
 
