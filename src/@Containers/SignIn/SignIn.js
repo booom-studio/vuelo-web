@@ -14,7 +14,7 @@ const styles = ({ palette: { projectColors } }) => {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: sample(projectColors)
+      backgroundColor: projectColors && sample(projectColors).light
     }
   };
 };
