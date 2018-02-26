@@ -139,3 +139,38 @@ export const colors = graphql(
     })
   }
 );
+
+export const setCubeId = graphql(
+  gql`
+    mutation setCubeId($cubeId: String) {
+      setCubeId(cubeId: $cubeId) {
+        cubeId
+      }
+    }
+  `,
+  {
+    props: ({ mutate }) => ({
+      setCubeId: cubeId =>
+        mutate({ variables: { cubeId } }).then(({ data: { cubeId } }) => cubeId)
+    })
+  }
+);
+
+export const cubeInfo = graphql(
+  gql`
+    {
+      cubeInfo {
+        cubeId
+        status
+      }
+    }
+  `,
+  {
+    props: ({ data: { cubeInfo: { cubeId, status } = {}, loading } }) => ({
+      cubeId,
+      cubeStatus: status,
+      loadingCubeInfo: loading
+    }),
+    options: { pollInterval: 1000 }
+  }
+);

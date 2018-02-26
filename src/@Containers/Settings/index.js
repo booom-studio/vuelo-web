@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { compose } from 'react-apollo';
 
 import { openDrawer } from '@dux/actions';
-// import { setCubeId } from '@dux/queries';
+import { setCubeId, cubeInfo } from '@dux/queries';
 
 import Drawer from './Settings';
 
@@ -15,7 +15,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  // setCubeId
-  // isActive
+  setCubeId,
+  cubeInfo,
   connect(mapStateToProps, mapDispatchToProps)
 )(Drawer);
